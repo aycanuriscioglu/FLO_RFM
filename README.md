@@ -38,4 +38,12 @@ Data Set Definition (Veri Kümesi Tanımı)
 
 • interested_in_categories_12 : Müşterinin son 12 ayda alışveriş yaptığı kategorilerin listesi
 
+
+!!!!!!!!!!!!!!
+
 Uyarı: Veri kümesini açık kaynak olmadığı için paylaşamayacağımı belirtmek isterim.
+
+!!!!!!!!!!!!!!
+
+Warning: I would like to point out that I cannot share the dataset because it is not open source.
+
