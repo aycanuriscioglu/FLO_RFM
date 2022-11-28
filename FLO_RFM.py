@@ -70,20 +70,16 @@ rfm = df.groupby("master_id").agg({"last_order_date": lambda last_order_date: (t
                              "of_on_total_ever": lambda of_on_total_ever: of_on_total_ever,
                              "of_on_total_price_ever": lambda of_on_total_price_ever: of_on_total_price_ever})
 
-rfm.head()
-type(rfm)
-
 
 rfm.columns = ['recency', 'frequency', 'monetary']
 
 rfm["recency_score"] = pd.qcut(rfm['recency'], 5, labels=[5, 4, 3, 2, 1])
 
-rfm["frequency_score"] = pd.qcut(rfm['frequency'].rank(method="first"), 5, labels=[1, 2, 3, 4, 5]) #videolara tekrar bak
+rfm["frequency_score"] = pd.qcut(rfm['frequency'].rank(method="first"), 5, labels=[1, 2, 3, 4, 5]) 
 
 rfm["monetary_score"] = pd.qcut(rfm['monetary'], 5, labels=[1, 2, 3, 4, 5])
 
 rfm["RFM_SCORE"] = (rfm['recency_score'].astype(str) + rfm['frequency_score'].astype(str))
-rfm.head()
 
 seg_map = {
     r'[1-2][1-2]': 'hibernating',
@@ -100,9 +96,6 @@ seg_map = {
 
 rfm['segment'] = rfm['RFM_SCORE'].replace(seg_map, regex=True)
 
-rfm.head()
-
-
 rfm[["segment", "recency", "frequency", "monetary"]].groupby("segment").agg(["mean"])
 
 
@@ -115,8 +108,6 @@ rfm_c_lc
 rfm_c_lc.shape[0]
 
 woman = df[(df["interested_in_categories_12"]).str.contains("KADIN")]
-woman
-woman.shape[0]
 
 woman_best_customers = pd.merge(rfm_c_lc, woman[["interested_in_categories_12","master_id"]], on=["master_id"])
 
